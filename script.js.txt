@@ -1,0 +1,141 @@
+const codigosFIFA = {
+  "México":"MEX","Corea del Sur":"KOR","República Checa":"CZE","Sudáfrica":"RSA",
+  "Canadá":"CAN","Bosnia y Herzegovina":"BIH","Qatar":"QAT","Suiza":"SUI",
+  "Brasil":"BRA","Marruecos":"MAR","Haití":"HAI","Escocia":"SCO",
+  "Estados Unidos":"USA","Paraguay":"PAR","Australia":"AUS","Turquía":"TUR",
+  "Alemania":"GER","Curazao":"CUW","Costa de Marfil":"CIV","Ecuador":"ECU",
+  "Países Bajos":"NED","Japón":"JPN","Suecia":"SWE","Túnez":"TUN",
+  "Bélgica":"BEL","Egipto":"EGY","Irán":"IRN","Nueva Zelanda":"NZL",
+  "España":"ESP","Cabo Verde":"CPV","Arabia Saudita":"KSA","Uruguay":"URU",
+  "Francia":"FRA","Senegal":"SEN","Irak":"IRQ","Noruega":"NOR",
+  "Argentina":"ARG","Argelia":"ALG","Austria":"AUT","Jordania":"JOR",
+  "Portugal":"POR","RD Congo":"COD","República Democrática del Congo":"COD",
+  "Uzbekistán":"UZB","Colombia":"COL","Inglaterra":"ENG","Croacia":"CRO",
+  "Ghana":"GHA","Panamá":"PAN"
+};
+
+function bandera(nombre){
+
+    const codigo = codigosFIFA[nombre];
+
+    if(!codigo){
+
+        return `<span class="placeholder-shield"></span>`;
+
+    }
+
+    return `<img class="flag" src="https://api.fifa.com/api/v3/picture/flags-sq-2/${codigo}" alt="${nombre}">`;
+
+}
+
+function ordenar(a,b){
+
+    const na = Number(String(a[1]).replace(/\D/g,'')) || 99;
+    const nb = Number(String(b[1]).replace(/\D/g,'')) || 99;
+
+    return na-nb;
+
+}
+
+function texto(valor,fallback=''){
+
+    return String(valor || fallback).trim();
+
+}
+
+function partidoHTML(fila){
+
+    const local = texto(fila[3],texto(fila[2],'Por definir'));
+    const visitante = texto(fila[7],texto(fila[6],'Por definir'));
+
+    const gl = texto(fila[4]);
+    const gv = texto(fila[5]);
+
+    const ganador = texto(fila[8]);
+
+    const fecha = texto(fila[10]);
+    const hora = texto(fila[11]);
+    const sede = texto(fila[12]);
+
+    const localWinner = ganador && ganador===local;
+    const visitaWinner = ganador && ganador===visitante;
+
+    return `
+
+<div class="match">
+
+<div class="meta">
+
+<span>${fecha}</span>
+
+<span class="time">${hora ? hora+" hs" : ""}</span>
+
+</div>
+
+<div class="team ${localWinner ? "winner" : visitaWinner ? "loser" : ""}">
+
+${bandera(local)}
+
+<span class="name">${local}</span>
+
+<span class="score">${gl}</span>
+
+</div>
+
+<div class="team ${visitaWinner ? "winner" : localWinner ? "loser" : ""}">
+
+${bandera(visitante)}
+
+<span class="name">${visitante}</span>
+
+<span class="score">${gv}</span>
+
+</div>
+
+${sede ? `<div class="venue">${sede}</div>` : ""}
+
+</div>
+
+`;
+
+}
+
+function columna(titulo,clase,partidos){
+
+    return `
+
+<div class="round ${clase}">
+
+<h3 class="round-title">${titulo}</h3>
+
+${partidos.sort(ordenar).map(partidoHTML).join("")}
+
+</div>
+
+`;
+
+}
+
+function renderizar(){
+
+document.getElementById("bracket").innerHTML=`
+
+${columna("16avos","round-16",datos.dieciseisavos)}
+
+${columna("Octavos","round-8",datos.octavos)}
+
+${columna("Cuartos","round-4",datos.cuartos)}
+
+${columna("Semifinales","round-2",datos.semifinales)}
+
+${columna("Final","round-final",datos.final)}
+
+`;
+
+document.getElementById("loader").style.display="none";
+
+document.getElementById("app").style.display="block";
+
+}
+
+window.onload=renderizar;

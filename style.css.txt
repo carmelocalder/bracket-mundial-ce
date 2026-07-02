@@ -1,0 +1,416 @@
+:root{
+  --bg:#fbfbfb;
+  --card:#ffffff;
+  --verde:#005e21;
+  --verde2:#1d8b3d;
+  --verde3:#44a81a;
+  --texto:#1d1d1d;
+  --gris:#6f7377;
+  --borde:#d9e4db;
+  --linea:#bfd8c6;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--bg);
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--texto);
+}
+
+/* ===========================
+   LOADER
+=========================== */
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:var(--verde);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader-spinner{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:5px solid rgba(255,255,255,.25);
+  border-top:5px solid #fff;
+  animation:girar .9s linear infinite;
+}
+
+.loader-texto{
+  margin-top:18px;
+  color:#fff;
+  font-size:18px;
+  font-weight:700;
+}
+
+@keyframes girar{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+/* ===========================
+   BRACKET
+=========================== */
+
+.bracket-ce{
+
+padding:22px;
+
+overflow-x:auto;
+
+background:#fbfbfb;
+
+}
+
+.bracket-inner{
+
+display:flex;
+
+gap:22px;
+
+min-width:1380px;
+
+align-items:flex-start;
+
+}
+
+/* ===========================
+   COLUMNAS
+=========================== */
+
+.round{
+
+width:245px;
+
+position:relative;
+
+}
+
+.round-title{
+
+text-align:center;
+
+font-size:11px;
+
+font-weight:900;
+
+text-transform:uppercase;
+
+letter-spacing:.12em;
+
+margin-bottom:15px;
+
+color:var(--verde);
+
+}
+
+/* ===========================
+   PARTIDO
+=========================== */
+
+.match{
+
+position:relative;
+
+background:#fff;
+
+border-radius:10px;
+
+border-left:5px solid var(--verde);
+
+border:1px solid var(--borde);
+
+padding:10px;
+
+margin-bottom:10px;
+
+min-height:82px;
+
+transition:.18s;
+
+}
+
+.match:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.match::after{
+
+content:"";
+
+position:absolute;
+
+right:-22px;
+
+top:50%;
+
+width:22px;
+
+border-top:1px solid var(--linea);
+
+}
+
+.round-final .match::after{
+
+display:none;
+
+}
+
+/* ===========================
+   CABECERA
+=========================== */
+
+.meta{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:10px;
+
+color:var(--gris);
+
+font-weight:800;
+
+margin-bottom:8px;
+
+text-transform:uppercase;
+
+}
+
+.time{
+
+color:var(--verde);
+
+font-weight:900;
+
+}
+
+/* ===========================
+   EQUIPOS
+=========================== */
+
+.team{
+
+display:grid;
+
+grid-template-columns:24px 1fr auto;
+
+align-items:center;
+
+gap:8px;
+
+padding:4px;
+
+border-radius:6px;
+
+font-size:12px;
+
+color:#555;
+
+}
+
+.team+.team{
+
+margin-top:3px;
+
+}
+
+.team.winner{
+
+background:#edf8ef;
+
+font-weight:800;
+
+color:var(--verde);
+
+}
+
+.team.loser{
+
+opacity:.45;
+
+}
+
+/* ===========================
+   BANDERA
+=========================== */
+
+.flag{
+
+width:22px;
+
+height:14px;
+
+object-fit:cover;
+
+display:block;
+
+box-shadow:0 0 0 1px rgba(0,0,0,.08);
+
+}
+
+.placeholder-shield{
+
+width:15px;
+
+height:17px;
+
+margin-left:3px;
+
+background:#9b9b9b;
+
+clip-path:polygon(50% 0%,92% 16%,86% 70%,50% 100%,14% 70%,8% 16%);
+
+}
+
+/* ===========================
+   NOMBRE
+=========================== */
+
+.name{
+
+overflow:hidden;
+
+white-space:nowrap;
+
+text-overflow:ellipsis;
+
+}
+
+/* ===========================
+   RESULTADO
+=========================== */
+
+.score{
+
+min-width:22px;
+
+text-align:right;
+
+font-weight:900;
+
+color:var(--verde);
+
+}
+
+/* ===========================
+   SEDE
+=========================== */
+
+.venue{
+
+margin-top:8px;
+
+padding-top:8px;
+
+border-top:1px solid #eef2ef;
+
+font-size:10px;
+
+font-weight:700;
+
+color:var(--gris);
+
+overflow:hidden;
+
+white-space:nowrap;
+
+text-overflow:ellipsis;
+
+}
+
+/* ===========================
+   ALTURAS DEL BRACKET
+=========================== */
+
+.round-16 .match:nth-child(2n){
+
+margin-bottom:26px;
+
+}
+
+.round-8 .match{
+
+margin-top:42px;
+
+margin-bottom:88px;
+
+}
+
+.round-4 .match{
+
+margin-top:122px;
+
+margin-bottom:206px;
+
+}
+
+.round-2 .match{
+
+margin-top:288px;
+
+margin-bottom:430px;
+
+}
+
+.round-final .match{
+
+margin-top:610px;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:700px){
+
+.bracket-ce{
+
+padding:15px;
+
+}
+
+.bracket-inner{
+
+min-width:1280px;
+
+}
+
+.round{
+
+width:225px;
+
+}
+
+.loader-texto{
+
+font-size:16px;
+
+}
+
+}
