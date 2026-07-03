@@ -401,3 +401,18 @@ font-size:16px;
 }
 
 }
+.ce-footer{
+  margin-top:32px;
+  padding:18px;
+  text-align:center;
+  font-size:13px;
+  color:#64748b;
+  background:#fff;
+  border-top:2px solid #0056A6;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.ce-footer strong{
+  color:#0056A6;
+  letter-spacing:.3px;
+}
