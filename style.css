@@ -156,21 +156,8 @@ box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .match::after{
-
-content:"";
-
-position:absolute;
-
-right:-22px;
-
-top:50%;
-
-width:22px;
-
-border-top:1px solid var(--linea);
-
+  display:none !important;
 }
-
 .round-final .match::after{
 
 display:none;
