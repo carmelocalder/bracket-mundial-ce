@@ -406,14 +406,14 @@ font-size:16px;
   padding:18px;
   text-align:center;
   font-size:13px;
-  color:##44a81a;
+  color:#44a81a;
   background:#fff;
-  border-top:2px solid ##1d8b3d;
+  border-top:2px solid #1d8b3d;
   font-family:Arial,Helvetica,sans-serif;
 }
 
 .ce-footer strong{
-  color:##1d8b3d;
+  color:#1d8b3d;
   letter-spacing:.3px;
 }
 .match::before,
