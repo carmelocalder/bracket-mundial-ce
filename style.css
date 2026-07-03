@@ -416,3 +416,14 @@ font-size:16px;
   color:#0056A6;
   letter-spacing:.3px;
 }
+.match::before,
+.match::after,
+.round::before,
+.round::after,
+.bracket-inner::before,
+.bracket-inner::after{
+  content:none !important;
+  display:none !important;
+  border:0 !important;
+  background:none !important;
+}
