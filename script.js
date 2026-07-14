@@ -52,7 +52,7 @@ function partidoHTML(fila){
     const gv = texto(fila[5]);
 
     const ganador = texto(fila[8]);
-
+const tituloPartido = texto(fila[1]);
     const fecha = texto(fila[10]);
     const hora = texto(fila[11]);
     const sede = texto(fila[12]);
@@ -66,10 +66,18 @@ function partidoHTML(fila){
 
 <div class="meta">
 
-<span>${fecha}</span>
+<span>${tituloPartido}</span>
 
 <span class="time">${hora ? hora+" hs" : ""}</span>
 
+</div>
+
+<div style="
+font-size:10px;
+font-weight:700;
+color:#6b7280;
+margin-bottom:6px;">
+${fecha}
 </div>
 
 <div class="team ${localWinner ? "winner" : visitaWinner ? "loser" : ""}">
@@ -128,7 +136,7 @@ ${columna("Cuartos","round-4",datos.cuartos)}
 
 ${columna("Semifinales","round-2",datos.semifinales)}
 
-${columna("Final","round-final",datos.final)}
+${columna("Finales","round-final",datos.final)}
 
 `;
 
