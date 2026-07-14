@@ -110,20 +110,33 @@ ${sede ? `<div class="venue">${sede}</div>` : ""}
 
 function columna(titulo,clase,partidos){
 
+    let html = "";
+
+    if(clase==="round-final"){
+
+        const final = partidos.find(p=>p[1]==="Final");
+        const tercer = partidos.find(p=>p[1]==="3er y 4to puesto");
+
+        if(final) html += partidoHTML(final);
+
+        if(tercer){
+            html += `<div class="tercer-puesto">`;
+            html += partidoHTML(tercer);
+            html += `</div>`;
+        }
+
+    }else{
+
+        html = partidos.sort(ordenar).map(partidoHTML).join("");
+
+    }
+
     return `
-
-<div class="round ${clase}">
-
-<h3 class="round-title">${titulo}</h3>
-
-${partidos.sort(ordenar).map(partidoHTML).join("")}
-
-</div>
-
-`;
-
+    <div class="round ${clase}">
+        <h3 class="round-title">${titulo}</h3>
+        ${html}
+    </div>`;
 }
-
 function renderizar(){
 
 document.getElementById("bracket").innerHTML=`
